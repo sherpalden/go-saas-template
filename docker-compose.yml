@@ -1,0 +1,25 @@
+services:
+  database:
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    container_name: saas-db
+    env_file: ./.env
+    ports:
+      - 5431:$DB_PORT
+    volumes:
+      - ../pgdata:/var/lib/postgresql/data
+
+  web:
+    build: 
+      context: .
+      dockerfile: ./docker/web/Dockerfile
+    container_name: saas-web
+    env_file: ./.env
+    ports: 
+      - $SERVER_PORT:$SERVER_PORT
+      - $DEBUG_PORT:$DEBUG_PORT
+    volumes:
+      - .:/app
+    depends_on:
+      - database

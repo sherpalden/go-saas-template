@@ -1,0 +1,4 @@
+development:
+  dialect: postgres
+  datasource: host=${DB_HOST} dbname=${DB_NAME} user=${DB_USER_ADMIN} password=${DB_USER_ADMIN_PASSWORD} sslmode=disable
+  dir: migrations
